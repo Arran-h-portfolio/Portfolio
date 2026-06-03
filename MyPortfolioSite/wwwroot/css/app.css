@@ -22,6 +22,9 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    scroll-behavior: smooth;
+    background-color: var(--clr-bg);
+    color: var(--clr-text);
 }
 
 h1:focus {
