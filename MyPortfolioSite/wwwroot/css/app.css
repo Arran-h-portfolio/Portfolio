@@ -1,3 +1,25 @@
+/* Step 3 implementation of styling updates */
+:root {
+    --clr-bg: #0d1117;
+    --clr-surface: #161b22;
+    --clr-surface-2: #21262d;
+    --clr-nav: #0d1117;
+    --clr-nav-border: #30363d;
+    --clr-accent: #58a6ff;
+    --clr-accent-glow: rgba(88, 166, 255, 0.15);
+    --clr-text: #e6edf3;
+    --clr-muted: #8b949e;
+    --clr-border: #30363d;
+    --clr-badge-bg: #1f6feb;
+    --clr-badge-text: #cae8ff;
+    --font-mono: 'SFMono-Regular', Consolas, monospace;
+    --navbar-height: 64px;
+    --section-gap: 5rem;
+    --radius-card: 12px;
+    --transition-base: 0.25s ease;
+
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
