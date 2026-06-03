@@ -113,13 +113,23 @@
 .hero-section {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     background: radial-gradient(ellipse 80% 60% at 50% 0%,
                     var(--clr-accent-glow) 0%,
                     transparent 60%),
                 var(--clr-bg);
     padding: 6rem 0 4rem;
     overflow: hidden;
+}
+
+.hero-photo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
 }
 
 .hero-greeting {
@@ -405,6 +415,25 @@
 
 .contact-link:hover {
     color: var(--clr-accent);
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    color: var(--clr-muted);
+    font-size: 1.75rem;
+    text-decoration: none;
+    transition: color var(--transition-base), transform var(--transition-base);
+}
+
+.social-icon:hover {
+    color: var(--clr-accent);
+    transform: translateY(-3px);
 }
 
 /* ═══════════════ RESPONSIVE ═══════════════ */
