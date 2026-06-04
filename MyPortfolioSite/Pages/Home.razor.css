@@ -1,4 +1,4 @@
-/* ═══════════════ HERO ═══════════════ */
+/* HERO  */
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -42,7 +42,7 @@
     transform: scale(1.04);
 }
 
-/* ═══════════════ EXPERIENCE TIMELINE ═══════════════ */
+/* EXPERIENCE TIMELINE */
 .timeline {
     display: flex;
     flex-direction: column;
@@ -50,7 +50,7 @@
     margin-top: 1rem;
 }
 
-/* ═══════════════ CERTIFICATES ═══════════════ */
+/* CERTIFICATES  */
 .cert-section-label {
     color: var(--clr-muted);
     font-size: 0.8rem;
@@ -73,13 +73,13 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    width: 90px;
+    width: 120px;
     cursor: default;
 }
 
 .cert-thumb {
-    width: 80px;
-    height: 80px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     object-fit: cover;
     object-position: top;
@@ -96,7 +96,7 @@
 
 .cert-name {
     color: var(--clr-text);
-    font-size: 0.72rem;
+    font-size: 0.62rem;
     font-weight: 600;
     text-align: center;
     line-height: 1.3;
@@ -109,12 +109,12 @@
 
 .cert-issuer {
     color: var(--clr-muted);
-    font-size: 0.65rem;
+    font-size: 0.58rem;
     text-align: center;
     line-height: 1.2;
 }
 
-/* ═══════════════ CONTACT ═══════════════ */
+/* CONTACT */
 .social-icons {
     display: flex;
     justify-content: center;
@@ -134,7 +134,7 @@
     transform: translateY(-3px);
 }
 
-/* ═══════════════ RESPONSIVE ═══════════════ */
+/* RESPONSIVE */
 @media (max-width: 767.98px) {
     .hero-photo {
         width: 200px;
