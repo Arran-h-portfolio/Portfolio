@@ -1,7 +1,35 @@
 ﻿@page "/projects"
+@using GameProject.Models
+@inject IJSRuntime JS
+
+
 
 <PageTitle>Projects</PageTitle>
 
 <h1>Projects</h1>
+
+@* RotaHub Project Demo and maybe screenshots *@
+
+@* Memory Type Game (overall style: retro arcade)*@
+@* ----> Container for top screen maybe with animations or current highscore with previous highscore displayed<----*@
+@* Screen needs to update when game is finished "Game Over, high score: [score]"*@
+
+@* PlaceHolder Section for sentences to be typed, held inside a seperate container* *@
+
+@* Start Game button, Finish Game button *@
+
+
+
+@* Logic for handling game state and scoring *@
+@* - Need stored sentences to be displayed 
+-highscore tracker
+- Previous Highscore tracker
+- tracker for correct sentence typed
+- logic for handling game state *@
+@code {
+    private MemoryGame game = new MemoryGame();
+    // Access properties like game.Score, game.HighScore, etc.
+}
+
 
 
