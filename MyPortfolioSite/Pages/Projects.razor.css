@@ -30,7 +30,7 @@
 }
 /* Text Animation */
 @keyframes typing {
-    from { width: 0; }
+    from { width: 50%; }
     to { width: 100%;}
 }
 @keyframes blink-cursor {
@@ -52,6 +52,9 @@
     justify-content: center;
     padding: 24px;
     border-radius: 12px;
+    border-color: #00ff41;
+    border-width: 2px;
+    border-style: solid;
     background-color: #0d1f0d;
     background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.15) 2px, rgba(0, 0, 0, 0.15) 4px);
 
