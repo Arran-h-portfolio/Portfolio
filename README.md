@@ -98,5 +98,5 @@ I believe the best way to learn is to build and ship real things.
 This portfolio, and the app on the Microsoft Store, are proof of that.
 
 📫 [Arran_Hewitson@outlook.com](mailto:AAAHStudios@outlook.com)  
-🌐 [your-portfolio-url]([https://your-portfolio-ur](https://arran-h-portfolio.github.io/Portfolio/))  
-📸 [@your-instagram](https://www.instagram.com/devbyarran/)
+🌐 [portfolio](https://arran-h-portfolio.github.io/Portfolio/)  
+📸 [@devbyarran](https://www.instagram.com/devbyarran/)
