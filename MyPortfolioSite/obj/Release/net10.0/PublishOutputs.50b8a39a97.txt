@@ -1,0 +1,4 @@
+E:\.Net Developer Career\Github Repos\Portfolio\release\wwwroot\index.html
+E:\.Net Developer Career\Github Repos\Portfolio\release\MyPortfolioSite.runtimeconfig.json
+E:\.Net Developer Career\Github Repos\Portfolio\release\dotnet.js
+E:\.Net Developer Career\Github Repos\Portfolio\release\web.config
