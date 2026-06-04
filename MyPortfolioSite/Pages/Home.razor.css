@@ -64,69 +64,42 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    align-items: center;
+    gap: 1.5rem;
+    align-items: flex-start;
 }
 
 .cert-badge {
-    display: inline-flex;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.35rem 1rem 0.35rem 0.35rem;
-    border-radius: 999px;
-    background: var(--clr-surface);
-    border: 1px solid var(--clr-border);
+    gap: 0.5rem;
+    width: 90px;
     cursor: default;
-    transition: border-color var(--transition-base), background-color var(--transition-base), box-shadow var(--transition-base);
-}
-
-.cert-badge:hover {
-    border-color: var(--clr-accent);
-    background-color: rgba(88, 166, 255, 0.12);
-    box-shadow: 0 0 0 1px var(--clr-accent), 0 0 18px var(--clr-accent-glow);
-}
-
-.cert-frame {
-    position: relative;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    border: 1.5px solid rgba(88, 166, 255, 0.3);
-    background-color: var(--clr-surface-2);
-    transition: border-color var(--transition-base);
-}
-
-.cert-badge:hover .cert-frame {
-    border-color: var(--clr-accent);
 }
 
 .cert-thumb {
-    width: 100%;
-    height: 100%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
     object-fit: cover;
     object-position: top;
     display: block;
+    border: 2px solid var(--clr-border);
+    box-shadow: 0 0 0 3px var(--clr-surface);
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
 }
 
-.cert-shine {
-    display: none;
-}
-
-.cert-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    text-align: left;
+.cert-badge:hover .cert-thumb {
+    box-shadow: 0 0 0 3px var(--clr-accent), 0 0 16px rgba(88, 166, 255, 0.35);
+    transform: scale(1.06);
 }
 
 .cert-name {
     color: var(--clr-text);
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     font-weight: 600;
-    line-height: 1.25;
+    text-align: center;
+    line-height: 1.3;
     transition: color var(--transition-base);
 }
 
@@ -136,8 +109,9 @@
 
 .cert-issuer {
     color: var(--clr-muted);
-    font-size: 0.7rem;
-    line-height: 1.25;
+    font-size: 0.65rem;
+    text-align: center;
+    line-height: 1.2;
 }
 
 /* ═══════════════ CONTACT ═══════════════ */
