@@ -8,7 +8,7 @@
 > A personal portfolio site built from scratch using Blazor WebAssembly and hosted on GitHub Pages.  
 > Designed to showcase my projects, skills, and professional background as a self-taught .NET developer.
 
-🔗 **Live Site:** [your-portfolio-url](https://arran-h-portfolio.github.io/Portfolio/)
+🔗 **Live Site:** [My Portfolio Site](https://arran-h-portfolio.github.io/Portfolio/)
 
 ---
 
