@@ -1,7 +1,7 @@
 # Personal Portfolio — Blazor WebAssembly
 
-![Deploy to GitHub Pages](https://github.com/yourusername/your-repo-name/actions/workflows/deploy.yml/badge.svg)
-![GitHub last commit](https://img.shields.io/github/last-commit/yourusername/your-repo-name?color=1F5C99)
+![Deploy to GitHub Pages](https://github.com/Arran-h-portfolio/Portfolio/actions/workflows/deploy.yml/badge.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/Arran-h-portfolio/Portfolio?color=1F5C99)
 ![Built with Blazor](https://img.shields.io/badge/Built%20with-Blazor%20WebAssembly-512BD4?logo=blazor&logoColor=white)
 ![Hosted on GitHub Pages](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-222222?logo=github&logoColor=white)
 
