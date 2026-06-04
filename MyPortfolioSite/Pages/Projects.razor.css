@@ -78,8 +78,8 @@
 
 .monitor-screen {
     position: absolute;
-    top: 10%;
-    left: 6%;
+    top: 6%;
+    left: 3%;
     width: 65%;
     height: 50%;
     overflow: hidden;
