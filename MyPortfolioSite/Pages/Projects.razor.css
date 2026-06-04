@@ -80,8 +80,8 @@
     position: absolute;
     top: 10%;
     left: 12%;
-    width: 76%;
-    height: 60%;
+    width: 70%;
+    height: 50%;
     overflow: hidden;
     background-color: #0d1f0d;
     background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.15) 2px, rgba(0, 0, 0, 0.15) 4px);
