@@ -80,6 +80,7 @@
     position: absolute;
     top: 40%;
     left: 30%;
+    outline: 3px solid red;
     width: 65%;
     height: 50%;
     overflow: hidden;
