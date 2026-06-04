@@ -32,6 +32,11 @@ jobs:
       - name: Rewrite base href
         run: sed -i 's|<base href="/" />|<base href="/Portfolio/" />|g' release/wwwroot/index.html
 
+      - name: Bust app.css cache
+        run: |
+          TS=$(date +%Y%m%d%H%M%S)
+          sed -i "s|href=\"css/app\.css[^\"]*\"|href=\"css/app.css?v=${TS}\"|g" release/wwwroot/index.html
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
