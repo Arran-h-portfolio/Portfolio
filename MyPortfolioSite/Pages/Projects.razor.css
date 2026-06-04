@@ -1,14 +1,31 @@
 /* Memory Type Game Styles */
 #game-container {
     /* Add your styles here */
+    background-color: #0a0a0a;
 }
 
 #top-screen {
     /* Add your styles here */
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    border-radius: 12px;
+    background-color: #0d1f0d;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.15) 2px, rgba(0, 0, 0, 0.15) 4px);
+
+
 }
 
 #score-display {
     /* Add your styles here */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    color: #00ff41;
+    text-shadow: 0 0 8px #00ff41, 0 0 16px #00ff41;
+
+
+
+
 }
 
 #game-screen {
