@@ -3,6 +3,7 @@ public class MemoryGame
 {
     public string? Sentence { get; set; }
     public int CurrentSentenceIndex { get; set; }
+    public string? CurrentSentence { get; set; }
     public bool IsGameOver { get; set; }
     public bool IsGameStarted { get; set; }
     public int CorrectSentencesTyped { get; set; }
