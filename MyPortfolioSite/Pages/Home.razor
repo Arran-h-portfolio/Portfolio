@@ -2,4 +2,168 @@
 
 <PageTitle>Home</PageTitle>
 
+@* Home Top Section - Introduction *@
 
+<section id="home" class="hero-section">
+    @* Hero Section Content, need photo(circular) + name + title + tagline + 2 cta buttons *@
+    <div class="hero-photo-container">
+    <img src="Images/profile.jpg" alt="Profile Image" class="hero-photo" />
+    </div>
+    <h1 class="display-4 mt-3">Arran Hewitson</h1>
+    <p class="lead">Aspiring .NET Developer | Passionate about building impactful software solutions</p>
+<p class="lead">Current Tech Stack ¦ C#, Blazor, MAUI Blazor, VSCode, Git, Github</p>
+    <div class="mt-4">
+        <a href="#about" class="btn btn-primary btn-lg me-3">Learn More</a>
+        <a href="#projects" class="btn btn-outline-light btn-lg">View Projects</a>
+    </div>
+</section>
+
+@* About Section *@
+<section id="about" class="about-section py-5">
+    @* About Section Content, need brief bio + 2-3 key highlights (e.g. education, certifications, key skills) *@
+    <div class="container">
+        <h2 class="mb-4">About Me</h2>
+        <p class="lead">Aspiring Software Developer/Engineer with a foundation in the .Net ecosystem,
+             including experience building applications using Blazor and MAUI Blazor.
+              Skilled in C#, VSCode, and version control using Git and Github.
+               Developing multiple project-based applications through self-directed learning and online courses.
+               Eager to contribute to a development team and continue growing as a software engineer in a professional environment.
+        </p>
+    </div>
+</section>
+
+@* Experience Section *@
+<section id="experience" class="experience">
+    @* Experience Section Content, want a horizontal timeline of cards each describing learning undertaken, with which institution *@
+    <div class="container">
+        <h2 class="mb-4">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Self-Directed Learning</h3>
+                <p>2023 - Present</p>
+                <p>Engaged in self-directed learning through online courses, tutorials, and hands-on projects to build a strong foundation in software development.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>VSCode - Development Environment</h3>
+                <p>2023 - Present</p>
+                <p>Proficient in using Visual Studio Code as a development environment, utilizing its features and extensions to enhance productivity and streamline the development workflow.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Soft Skills Development</h3>
+                <p>2023 - Present</p>
+                <p>Actively developing soft skills such as communication, teamwork, and problem-solving through collaborative projects and online communities.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Codecademy - C# Certification</h3>
+                <p>2023</p>
+                <p>Completed a project-based course focused on building web applications using Blazor WebAssembly, enhancing skills in front-end development with C#.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Other relevant experiences - Unity</h3>
+                <p>2024 - Present</p>
+                <p>Explored game development using Unity, gaining experience in creating interactive experiences
+                     and understanding game design principles. 
+                     Which further diversified my C# skills and experience through writing scripts with a heavy OOP based approach.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>MicrosoftLearn - Foundational C# Course</h3>
+                <p>2025</p>
+                <p>Completed a comprehensive foundational course, gaining practical experience using C# and .NET.</p>
+            </div>
+                        <div class="timeline-item">
+                <h3>Version Control - Git and Github</h3>
+                <p>2025 - Present</p>
+                <p>Gained experience using Git for version control and Github for project hosting, and managing code effectively. This will contribute to an easier onboarding process for future team members.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Project-Based Learning - MAUI Blazor Applications</h3>
+                <p>2026</p>
+                <p>Put together multiple projects using MAUI Blazor, learning how to create cross-platform applications for mobile and desktop using .NET MAUI and Blazor.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* Skill Section - need a badge grid grouped by category *@
+<section>
+    <div class="container">
+        <h3 class="cert-section-label">Certifications</h3>
+        <div class="cert-track">
+
+    <div class="cert-badge">
+        <div class="cert-frame">
+            <img src="Images/cert-codecademy.png" alt="CodeAcademy Certificate" class="cert-thumb" />
+            <div class="cert-shine"></div>
+        </div>
+        <div class="cert-info">
+            <span class="cert-name">Web Development</span>
+            <span class="cert-issuer">CodeAcademy</span>
+        </div>
+    </div>
+
+    <div class="cert-badge">
+        <div class="cert-frame">
+            <img src="Images/cert-csharp-foundational.png" alt="Foundational C# Certificate" class="cert-thumb" />
+            <div class="cert-shine"></div>
+        </div>
+        <div class="cert-info">
+            <span class="cert-name">Foundational C#</span>
+            <span class="cert-issuer">Microsoft / freeCodeCamp</span>
+        </div>
+    </div>
+
+    <div class="cert-badge">
+        <div class="cert-frame">
+            <img src="Images/Build-a-to-do-list-with-blazor.png" alt="Build a To-Do List with Blazor Certificate" class="cert-thumb" />
+            <div class="cert-shine"></div>
+        </div>
+        <div class="cert-info">
+            <span class="cert-name">Build a To-Do List with Blazor</span>
+            <span class="cert-issuer">Microsoft Learn</span>
+        </div>
+    </div>
+
+    <div class="cert-badge">
+        <div class="cert-frame">
+            <img src="Images/Interact-with-data-in-blazor-web-apps.png" alt="Interact with Data in Blazor Web Apps Certificate" class="cert-thumb" />
+            <div class="cert-shine"></div>
+        </div>
+        <div class="cert-info">
+            <span class="cert-name">Interact with Data in Blazor Web Apps</span>
+            <span class="cert-issuer">Microsoft Learn</span>
+        </div>
+    </div>
+
+    <div class="cert-badge">
+        <div class="cert-frame">
+            <img src="Images/Introduction-to-git.png" alt="Introduction to Git Certificate" class="cert-thumb" />
+            <div class="cert-shine"></div>
+        </div>
+        <div class="cert-info">
+            <span class="cert-name">Introduction to Git</span>
+            <span class="cert-issuer">Microsoft Learn</span>
+        </div>
+    </div>
+
+        </div>
+    </div>
+</section>
+
+@* Contact Section - link linkedIn, Instagram, Github, Email *@
+<section id="contact" class="contact-section py-5">
+    @* Contact Section Content, need icons linking to LinkedIn, Instagram, Github, and an email link *@
+    <div class="container text-center">
+        <h2 class="mb-4">Contact Me</h2>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/devbyarran/" target="_blank" class="social-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://github.com/Arran-h-portfolio" target="_blank" class="social-icon">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:ahprospects@outlook.com" class="social-icon">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+</section>
