@@ -1,4 +1,44 @@
 /* Memory Type Game Styles */
+.game-title{
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 48px;
+    color: #00ff41;
+    text-shadow: 0 0 8px #00ff41, 0 0 16px #00ff41;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    border-right: 3px solid #00ff41;
+    animation: typing 1.5s steps(20, end) forwards,
+    blink-cursor 0.6s step-end 4,
+    cursor-fade 0.1s 1.5s forwards;
+}
+.game-description {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    color: #00ff41;
+    text-shadow: 0 0 8px #00ff41, 0 0 16px #00ff41;
+    margin-bottom: 24px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    border-right: 3px solid #00ff41;
+    animation: typing 2.5s steps(40, end) 1.6s forwards,
+    blink-cursor 0.1s 4.1s forwards;
+}
+/* Text Animation */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%;}
+}
+@keyframes blink-cursor {
+    0%, 100% { border-color: #00ff41; }
+    50% { border-color: transparent; }
+}
+@keyframes cursor-fade {
+    to { border-right-color: transparent; }
+}
 #game-container {
     /* Add your styles here */
     background-color: #0a0a0a;
