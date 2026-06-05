@@ -16,19 +16,24 @@
 <h2>Memory Type Game: Work in progress!</h2>
 
 <div class="monitor-wrapper">
-    <img src="Images/monitor-image.png" alt="retro monitor" class="monitor-img" />
+    @* <img src="Images/monitor-image.png" alt="retro monitor" class="monitor-img" /> *@
     <div class="monitor-screen">
         <div id="top-screen">
-            <h2 id="game-title">Memory Type Game</h2>
-            <p id="game-description">Test your memory and typing skills in this fun and addictive game! Try to remember and type the sentences correctly to achieve a high score. Can you beat your previous high score?</p>
+            <h2 id="game-title">Memory-Type</h2>
+            <p class="description-line">Test your memory and typing skills!</p>
+            <p class="description-line">Memorize the sentences displayed on the screen.</p>
+            <p class="description-line">Type the sentences as quickly and</p>
+            <p class="description-line">accurately as you can.</p>
             <div id="score-display">
                 <p>Current Score: @game.Score</p>
                 <p>Previous High Score: @game.PreviousHighScore</p>
             </div>
+            <button id="start-button" @*@onclick="StartGame"*@>Start Game</button>
+
         </div>
         <div id="game-screen">
             @* This is where the sentences will be displayed for the player to type *@
-            <p id="sentence-display"><input /></p>
+            <p id="sentence-display"><input id="input-box"/></p>
         </div>
     </div>
 </div>

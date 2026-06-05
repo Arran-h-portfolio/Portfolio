@@ -13,24 +13,58 @@
         blink-cursor 0.6s step-end 4,
         cursor-fade 0.1s 1.5s forwards;
 }
-#game-description {
+.description-line {
     font-family: 'Courier New', Courier, monospace;
     font-size: 18px;
     color: #00ff41;
     text-shadow: 0 0 8px #00ff41, 0 0 16px #00ff41;
-    margin-bottom: 24px;
+    margin: 0;
     overflow: hidden;
     white-space: nowrap;
     width: 0;
     border-right: 3px solid #00ff41;
+}
+
+/* Line 1: starts after title finishes (1.6s), takes 1.5s to type */
+.description-line:nth-child(1) {
     animation:
-        typing 2.5s steps(40, end) 1.6s forwards,
-        blink-cursor 0.6s step-end 1.6s 6,
-        cursor-fade 0.1s 4.1s forwards;
+        typing 1.5s steps(38, end) 1.6s forwards,
+        blink-cursor 0.6s step-end 1.6s 3,
+        cursor-fade 0.1s 3.1s forwards;
+}
+
+/* Line 2: starts after line 1 finishes (3.1s), takes 1.8s to type */
+.description-line:nth-child(2) {
+    animation:
+        typing 1.8s steps(46, end) 3.1s forwards,
+        blink-cursor 0.6s step-end 3.1s 3,
+        cursor-fade 0.1s 4.9s forwards;
+}
+
+/* Line 3: starts after line 2 finishes (4.9s), takes 1.2s to type */
+.description-line:nth-child(3) {
+    animation:
+        typing 1.2s steps(30, end) 4.9s forwards,
+        blink-cursor 0.6s step-end 4.9s 3,
+        cursor-fade 0.1s 6.1s forwards;
+}
+/* line 4: starts after line 3 finishes (6.1s), takes 1.5s to type */
+.description-line:nth-child(4) {
+    animation:
+        typing 1.5s steps(38, end) 6.1s forwards,
+        blink-cursor 0.6s step-end 6.1s 3,
+        cursor-fade 0.1s 7.6s forwards;
+}
+/* line 5: starts after line 4 finishes (7.6s), takes 1.8s to type */
+.description-line:nth-child(5) {
+    animation:
+        typing 1.8s steps(46, end) 7.6s forwards,
+        blink-cursor 0.6s step-end 7.6s 3,
+        cursor-fade 0.1s 9.4s forwards;
 }
 /* Text Animation */
 @keyframes typing {
-    from { width: 50%; }
+    from { width: 0%; }
     to { width: 100%;}
 }
 @keyframes blink-cursor {
@@ -48,8 +82,8 @@
 #top-screen {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
 }
 
 #score-display {
@@ -67,6 +101,7 @@
     position: relative;
     width: 100%;
     max-width: 800px;
+    min-height: 600px;
     margin: 0 auto;
 }
 
@@ -80,15 +115,59 @@
     position: absolute;
     top: 14%;
     left: 17%;
-    width: 65%;
-    height: 50%;
-    overflow: hidden;
+    width: 74%;
+    min-height: 72%;
+    overflow: visible;
     background-color: #0d1f0d;
     background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.15) 2px, rgba(0, 0, 0, 0.15) 4px);
     padding: 16px;
     box-sizing: border-box;
 }
 
+#input-box {
+    width: 100%;
+    padding: 8px;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: transparent;
+    color: #00ff41;
+    border: 2px solid #00ff41;
+    border-radius: 4px;
+    background-image: pixels;
+}
+
+#input-box:focus {
+    outline: none;
+    border-color: #20ff58;
+    box-shadow: 0 0 8px #00ff41, 0 0 16px #00ff41;
+}
+
 #game-screen {
     /* Add your styles here */
+}
+
+#start-button {
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #00ff41;
+    color: #0a0a0a;
+    border: 2px solid #00ff41;
+    border-radius: 4px;
+    cursor: pointer;
+    image-rendering: pixelated;
+}
+
+#start-button:hover {
+    background-color: #20ff58;
+    border-color: #20ff58;
+}
+#start-button:focus {
+    outline: none;
+    box-shadow: 0 0 8px #00ff41, 0 0 16px #00ff41;
 }
