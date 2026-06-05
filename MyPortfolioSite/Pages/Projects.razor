@@ -18,23 +18,31 @@
 <div class="monitor-wrapper">
     @* <img src="Images/monitor-image.png" alt="retro monitor" class="monitor-img" /> *@
     <div class="monitor-screen">
-        <div id="top-screen">
-            <h2 id="game-title">Memory-Type</h2>
-            <p class="description-line">Test your memory and typing skills!</p>
-            <p class="description-line">Memorize the sentences displayed on the screen.</p>
-            <p class="description-line">Type the sentences as quickly and</p>
-            <p class="description-line">accurately as you can.</p>
-            <div id="score-display">
-                <p>Current Score: @game.Score</p>
-                <p>Previous High Score: @game.PreviousHighScore</p>
+        @if (!game.IsGameStarted)
+        {
+            <div id="top-screen">
+                <h2 id="game-title">Memory-Type</h2>
+                <p class="description-line">Test your memory and typing skills!</p>
+                <p class="description-line">Memorize the sentences displayed on the screen.</p>
+                <p class="description-line">Type the sentences as quickly and</p>
+                <p class="description-line">accurately as you can.</p>
             </div>
-            <button id="start-button" @*@onclick="StartGame"*@>Start Game</button>
-
-        </div>
+            <button id="start-button" @onclick="StartGame">Start Game</button>
+        }
+        else
+        {
         <div id="game-screen">
+            <div id="score-display">
+            <h2 id="game-title">Round @game.CurrentRound</h2>
+            <p>Current Score: @game.Score</p>
+            <p>Previous High Score: @game.PreviousHighScore</p>
+            </div>
             @* This is where the sentences will be displayed for the player to type *@
-            <p id="sentence-display"><input id="input-box"/></p>
+            <p id="sentence-display"><input id="input-box" placeholder="@game.Rounds[1][1]" /></p>
+            <button id="start-button" @*@onclick="StartGame"*@>Start Game</button>
         </div>
+        }
+
     </div>
 </div>
 @* PlaceHolder Section for sentences to be typed, held inside a seperate container* *@
@@ -50,7 +58,7 @@
 - tracker for correct sentence typed
 - logic for handling game state *@
 @code {
-    private MemoryGame game = new MemoryGame()
+    public MemoryGame game = new MemoryGame()
     {
         // Populate didctionarys for each round with sentences to be typed
         Rounds = new Dictionary<int, Dictionary<int, string>>()
@@ -66,6 +74,7 @@
                 }
             },
             {
+            
                 2, new Dictionary<int, string>()
                 {
                     { 1, "He is a young man, full of energy and a talent in his own way." },
@@ -76,6 +85,19 @@
             }
         }
     };
+    public void StartGame()
+    {
+        game.IsGameStarted = true;
+        // Logic to start the game, display sentences, and handle user input
+        // This is where you would implement the game loop and logic to update the score and high scores
+
+        
+    }
+    private void AdvanceRound()
+    {
+        game.CurrentRound++;
+        StateHasChanged();
+    }
 }
 
 

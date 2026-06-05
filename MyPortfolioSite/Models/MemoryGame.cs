@@ -5,7 +5,7 @@ public class MemoryGame
     public int CurrentSentenceIndex { get; set; }
     public string? CurrentSentence { get; set; }
     public bool IsGameOver { get; set; }
-    public bool IsGameStarted { get; set; }
+    public bool IsGameStarted { get; set; } = false;
     public int CorrectSentencesTyped { get; set; }
     public int TotalSentences { get; set; }
     // Setting up rounds system
@@ -15,6 +15,7 @@ public class MemoryGame
     public int Score { get; set; }
     public int HighScore { get; set; }
     public int PreviousHighScore { get; set; }
+
 
 }
 
