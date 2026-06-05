@@ -45,8 +45,32 @@
 - tracker for correct sentence typed
 - logic for handling game state *@
 @code {
-    private MemoryGame game = new MemoryGame();
-    // Access properties like game.Score, game.HighScore, etc.
+    private MemoryGame game = new MemoryGame()
+    {
+        // Populate didctionarys for each round with sentences to be typed
+        Rounds = new Dictionary<int, Dictionary<int, string>>()
+        {
+            {
+                1, new Dictionary<int, string>()
+                {
+                    { 1, "You bow to no one." },
+                    { 2, "The stars are veiled." },
+                    { 3, "Authority is not given to you." },
+                    { 4, "Courage will now be your best defence." },
+                    { 5, "Hope remains while the company is true." }
+                }
+            },
+            {
+                2, new Dictionary<int, string>()
+                {
+                    { 1, "He is a young man, full of energy and a talent in his own way." },
+                    { 2, "All we have to do is to decide what to do with the time that is given to us." },
+                    { 3, "The world is full of magic things, patiently waiting for our senses to grow sharper." },
+                    { 4, "The only way to do great work is to love what you do." }
+                }
+            }
+        }
+    };
 }
 
 
