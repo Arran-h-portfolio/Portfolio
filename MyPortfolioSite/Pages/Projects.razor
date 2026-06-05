@@ -31,16 +31,20 @@
         }
         else
         {
-        <div id="game-screen">
-            <div id="score-display">
-            <h2 id="game-title">Round @game.CurrentRound</h2>
-            <p>Current Score: @game.Score</p>
-            <p>Previous High Score: @game.PreviousHighScore</p>
-            </div>
-            @* This is where the sentences will be displayed for the player to type *@
-            <p id="sentence-display"><input id="input-box" placeholder="@game.Rounds[1][1]" /></p>
-            <button id="start-button" @*@onclick="StartGame"*@>Start Game</button>
+            <div id="game-screen">
+            @if (game.IsGameStarted)
+            {
+               <p id="score-display">Memorize the place holder</p>
+               <input id="input-box" class="score-display" type="text"
+               value="@userInput"
+               @oninput="e => userInput = e.Value?.ToString() ?? string.Empty"
+               @onkeydown="HandleEnter"
+               placeholder="@game.CurrentSentence"/>
+               <p id="score-display">Score: @game.Score</p>
+               <p id="score-display">High Score: @game.HighScore</p>
+            }
         </div>
+
         }
 
     </div>
@@ -58,6 +62,7 @@
 - tracker for correct sentence typed
 - logic for handling game state *@
 @code {
+    private string userInput = string.Empty;
     public MemoryGame game = new MemoryGame()
     {
         // Populate didctionarys for each round with sentences to be typed
@@ -88,6 +93,10 @@
     public void StartGame()
     {
         game.IsGameStarted = true;
+        game.CurrentRound = 1;
+        game.CurrentSentenceIndex = 1;
+        game.Score = 0;
+        LoadCurrentSentence();
         // Logic to start the game, display sentences, and handle user input
         // This is where you would implement the game loop and logic to update the score and high scores
 
@@ -97,6 +106,50 @@
     {
         game.CurrentRound++;
         StateHasChanged();
+    }
+    private void LoadCurrentSentence()
+    {
+        var round = game.Rounds![game.CurrentRound];
+        if (round.ContainsKey(game.CurrentSentenceIndex))
+        {
+            game.CurrentSentence = round[game.CurrentSentenceIndex];
+        }
+    }
+    private void HandleEnter(KeyboardEventArgs e)
+    {
+        if (e.Key != "Enter") return;
+        
+        if (userInput.Trim() == game.CurrentSentence)
+        {
+            game.Score++;
+            game.CorrectSentencesTyped++;
+        }
+
+        game.CurrentSentenceIndex++;
+        var round = game.Rounds![game.CurrentRound];
+
+        if (!round.ContainsKey(game.CurrentSentenceIndex))
+        {
+            game.CurrentRound++;
+            game.CurrentSentenceIndex = 1;
+
+            if (!game.Rounds.ContainsKey(game.CurrentRound))
+            {
+                game.IsGameOver = true;
+                game.IsGameStarted = false;
+            }
+            else{
+                LoadCurrentSentence();
+            }
+        }
+        else
+        {
+            LoadCurrentSentence();
+        }
+
+        userInput = string.Empty;
+            
+        
     }
 }
 
