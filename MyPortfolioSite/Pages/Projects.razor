@@ -13,12 +13,22 @@
 @* Memory Type Game (overall style: retro arcade)*@
 @* ----> Container for top screen maybe with animations or current highscore with previous highscore displayed<----*@
 @* Screen needs to update when game is finished "Game Over, high score: [score]"*@
-<h2>Memory Type Game: Work in progress!</h2>
+<div class="projects-wrapper">
+<h2 class="game-heading">Memory Type Game: Work in progress!</h2>
 
 <div class="monitor-wrapper">
     @* <img src="Images/monitor-image.png" alt="retro monitor" class="monitor-img" /> *@
     <div class="monitor-screen">
-        @if (!game.IsGameStarted)
+        @if (game.IsGameOver)
+        {
+            <div id="game-over-screen">
+                <h2 id="game-title">GAME OVER</h2>
+                <p id="score-display">Final Score: @game.Score</p>
+                <p id="score-display">High Score: @game.HighScore</p>
+                <button id="start-button" @onclick="RestartGame">Play Again</button>
+            </div>
+        }
+        else if (!game.IsGameStarted)
         {
             <div id="top-screen">
                 <h2 id="game-title">Memory-Type</h2>
@@ -32,22 +42,18 @@
         else
         {
             <div id="game-screen">
-            @if (game.IsGameStarted)
-            {
-               <p id="score-display">Memorize the place holder</p>
-               <input id="input-box" class="score-display" type="text"
-               value="@userInput"
-               @oninput="e => userInput = e.Value?.ToString() ?? string.Empty"
-               @onkeydown="HandleEnter"
-               placeholder="@game.CurrentSentence"/>
-               <p id="score-display">Score: @game.Score</p>
-               <p id="score-display">High Score: @game.HighScore</p>
-            }
-        </div>
-
+                <p id="score-display">Memorize the placeholder</p>
+                <input id="input-box" class="@(isIncorrect ? "input-incorrect" : "")" type="text"
+                       value="@userInput"
+                       @oninput="e => userInput = e.Value?.ToString() ?? string.Empty"
+                       @onkeydown="HandleEnter"
+                       placeholder="@game.CurrentSentence" />
+                <p id="score-display">Score: @game.Score</p>
+                <p id="score-display">High Score: @game.HighScore</p>
+            </div>
         }
-
     </div>
+</div>
 </div>
 @* PlaceHolder Section for sentences to be typed, held inside a seperate container* *@
 
@@ -63,6 +69,7 @@
 - logic for handling game state *@
 @code {
     private string userInput = string.Empty;
+    private bool isIncorrect = false;
     public MemoryGame game = new MemoryGame()
     {
         // Populate didctionarys for each round with sentences to be typed
@@ -71,21 +78,21 @@
             {
                 1, new Dictionary<int, string>()
                 {
-                    { 1, "You bow to no one." },
-                    { 2, "The stars are veiled." },
-                    { 3, "Authority is not given to you." },
-                    { 4, "Courage will now be your best defence." },
-                    { 5, "Hope remains while the company is true." }
+                    { 1, "You bow to no one" },
+                    { 2, "The stars are veiled" },
+                    { 3, "Authority is not given to you" },
+                    { 4, "Courage will now be your best defence" },
+                    { 5, "Hope remains while the company is true" }
                 }
             },
             {
-            
+
                 2, new Dictionary<int, string>()
                 {
-                    { 1, "He is a young man, full of energy and a talent in his own way." },
-                    { 2, "All we have to do is to decide what to do with the time that is given to us." },
-                    { 3, "The world is full of magic things, patiently waiting for our senses to grow sharper." },
-                    { 4, "The only way to do great work is to love what you do." }
+                    { 1, "He is a young man, full of energy and a talent in his own way" },
+                    { 2, "All we have to do is to decide what to do with the time that is given to us" },
+                    { 3, "The world is full of magic things, patiently waiting for our senses to grow sharper" },
+                    { 4, "The only way to do great work is to love what you do" }
                 }
             }
         }
@@ -93,14 +100,17 @@
     public void StartGame()
     {
         game.IsGameStarted = true;
+        game.IsGameOver = false;
         game.CurrentRound = 1;
         game.CurrentSentenceIndex = 1;
         game.Score = 0;
         LoadCurrentSentence();
-        // Logic to start the game, display sentences, and handle user input
-        // This is where you would implement the game loop and logic to update the score and high scores
-
-        
+    }
+    private void RestartGame()
+    {
+        game.IsGameOver = false;
+        game.PreviousHighScore = game.HighScore;
+        StartGame();
     }
     private void AdvanceRound()
     {
@@ -115,7 +125,7 @@
             game.CurrentSentence = round[game.CurrentSentenceIndex];
         }
     }
-    private void HandleEnter(KeyboardEventArgs e)
+    private async Task HandleEnter(KeyboardEventArgs e)
     {
         if (e.Key != "Enter") return;
         
@@ -123,6 +133,16 @@
         {
             game.Score++;
             game.CorrectSentencesTyped++;
+        }
+        else
+        {
+            // Trigger shake
+            isIncorrect = true;
+            game.Score--;
+            StateHasChanged();
+            await Task.Delay(400); // Matches animation length
+            isIncorrect = false; // resets bool so animations stop and user can try again
+            @* return; // don't advance round *@
         }
 
         game.CurrentSentenceIndex++;
@@ -135,6 +155,11 @@
 
             if (!game.Rounds.ContainsKey(game.CurrentRound))
             {
+                if (game.HighScore == 0 || game.Score > game.HighScore)
+                {
+                    game.PreviousHighScore = game.HighScore;
+                    game.HighScore = game.Score;
+                }
                 game.IsGameOver = true;
                 game.IsGameStarted = false;
             }
