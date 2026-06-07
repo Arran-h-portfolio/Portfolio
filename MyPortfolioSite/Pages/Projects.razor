@@ -42,6 +42,7 @@
         else
         {
             <div id="game-screen">
+                <h2 id="game-title">Round: @game.CurrentRound</h2>
                 <p id="score-display">Memorize the placeholder</p>
                 <input id="input-box" class="@(isIncorrect ? "input-incorrect" : "")" type="text"
                        value="@userInput"
@@ -55,18 +56,8 @@
     </div>
 </div>
 </div>
-@* PlaceHolder Section for sentences to be typed, held inside a seperate container* *@
-
-@* Start Game button, Finish Game button *@
-
-
 
 @* Logic for handling game state and scoring *@
-@* - Need stored sentences to be displayed 
--highscore tracker
-- Previous Highscore tracker
-- tracker for correct sentence typed
-- logic for handling game state *@
 @code {
     private string userInput = string.Empty;
     private bool isIncorrect = false;
@@ -94,6 +85,15 @@
                     { 3, "The world is full of magic things, patiently waiting for our senses to grow sharper" },
                     { 4, "The only way to do great work is to love what you do" }
                 }
+            },
+            {
+                3, new Dictionary<int, string> ()
+                    {
+                        {1, "if you're going through hell, keep going"},
+                        {2, "It's the job that's never started as takes longest to finish"},
+                        {3, "White shores, and beyond, a far green country under a swift sunrise"},
+                        {4, "I don't know half of you half as well as i should like and i like less than half of you half as well as you deserve"}
+                    }
             }
         }
     };
@@ -125,6 +125,9 @@
             game.CurrentSentence = round[game.CurrentSentenceIndex];
         }
     }
+
+    @* Method for pressing enter key on input, activates correct or incorrect animation
+    Moves to next sentence regardless *@
     private async Task HandleEnter(KeyboardEventArgs e)
     {
         if (e.Key != "Enter") return;
