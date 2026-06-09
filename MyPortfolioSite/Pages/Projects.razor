@@ -60,6 +60,27 @@
         }
     </div>
 </div>
+<h2>Project Details and Outcomes</h2>
+<p>I really enjoy speed typing games and have seen many free online versions put together by my favourite devs,
+     I wanted to have a go at putting one together myself in my own style with my own twist.</p>
+<p>I wanted to add an extra level of complexity to the game by adding a memory element in the form of a "placeholder" mechanic</p>
+<h3>Implemented</h3>
+<ul>
+    <li>Setup Speed typing game on my projects page using Blazor framework</li>
+    <li>Added to my growing experience using Blazor framework, adding in and implementing models and resources</li>
+    <li>Use CI/CD through Git and GitHub pages to get more comfortable with that workflow environment</li>
+    <li>Logic flow to setup and advance rounds to the game</li>
+    <li>Created a dictionary of phrases for each round of the game</li>
+    <li>Advanced CSS understanding and implementation by adding retro-arcade styling to the game to give it that nostalgic feeling</li>
+    
+</ul>
+<h3>Tech-Stack</h3>
+<p>Blazor, .Net, C#, Git and Github</p>
+</div>
+
+@* Project card for RotaHub *@
+<div class="projects-wrapper">
+
 </div>
 
 @* Logic for handling game state and scoring *@
@@ -104,35 +125,7 @@
     };
 
     public SpeedGame wpm = new SpeedGame();
-    public void GetWpm()
-    {
-        // need logic for getting words per minute for each round.
-        // Convert user input to char array
-        string[] userWords = userInput.Split(' ');
-        // get start and end of round time
-        if (game.IsGameStarted)
-        {
-            wpm.RoundStartTime = DateTime.Now;
-        }
-        if (game.IsGameOver)
-        {
-            wpm.RoundEndTime = DateTime.Now;
-        }
-        // subract the two points in time to gain period of time for each round
-        wpm.Elapsed = (wpm.RoundEndTime - wpm.RoundStartTime);
-        // Time elapsed in minutes
-        double minutes = wpm.Elapsed.TotalMinutes;
-        // formula for looping through each word in char array and assigning 1 for each word the user types
-        for (int i = 0; i < userWords.Length - 1; i++)
-        {
-            wpm.RoundWpm++;
-        }
 
-        // Formula for working out words per minute WPM = total words typed / time taken in minutes
-        wpm.Wpm = wpm.RoundWpm / minutes;
-
-        
-    }
     public void StartGame()
     {
         game.IsGameStarted = true;
@@ -140,6 +133,9 @@
         game.CurrentRound = 1;
         game.CurrentSentenceIndex = 1;
         game.Score = 0;
+        wpm.RoundWpm = 0;
+        wpm.RoundWpmHistory.Clear();
+        wpm.RoundStartTime = DateTime.Now;
         LoadCurrentSentence();
     }
     private void RestartGame()
@@ -162,20 +158,18 @@
         }
     }
 
-    public void GameWpmAverage()
+    public void GetWpm()
     {
-        // Add round totals to list to get average for whole game
-        wpm.RoundWpmHistory.Add(wpm.Wpm);
-        // Get average of list with the .Average() function
-        wpm.AverageWpm = wpm.RoundWpmHistory.Average();
+        string[] userWords = userInput.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        wpm.RoundWpm += userWords.Length;
     }
 
-    @* Method for pressing enter key on input, activates correct or incorrect animation
-    Moves to next sentence regardless *@
     private async Task HandleEnter(KeyboardEventArgs e)
     {
         if (e.Key != "Enter") return;
-        
+
+        GetWpm();
+
         if (userInput.Trim() == game.CurrentSentence)
         {
             game.Score++;
@@ -183,13 +177,11 @@
         }
         else
         {
-            // Trigger shake
             isIncorrect = true;
             game.Score--;
             StateHasChanged();
-            await Task.Delay(400); // Matches animation length
-            isIncorrect = false; // resets bool so animations stop and user can try again
-            return; // don't advance round 
+            await Task.Delay(400);
+            isIncorrect = false;
         }
 
         game.CurrentSentenceIndex++;
@@ -197,6 +189,12 @@
 
         if (!round.ContainsKey(game.CurrentSentenceIndex))
         {
+            // Round complete — calculate WPM for this round
+            wpm.RoundEndTime = DateTime.Now;
+            wpm.Wpm = wpm.RoundWpm / (wpm.RoundEndTime - wpm.RoundStartTime).TotalMinutes;
+            wpm.RoundWpmHistory.Add(wpm.Wpm);
+            wpm.RoundWpm = 0;
+
             game.CurrentRound++;
             game.CurrentSentenceIndex = 1;
 
@@ -209,11 +207,11 @@
                 }
                 game.IsGameOver = true;
                 game.IsGameStarted = false;
-
-                // This is where to call the method that works out the wpm average for the whole game
-                GameWpmAverage();
+                wpm.AverageWpm = wpm.RoundWpmHistory.Average();
             }
-            else{
+            else
+            {
+                wpm.RoundStartTime = DateTime.Now;
                 LoadCurrentSentence();
             }
         }
@@ -222,11 +220,7 @@
             LoadCurrentSentence();
         }
 
-        GetWpm();
-
         userInput = string.Empty;
-            
-        
     }
 }
 
