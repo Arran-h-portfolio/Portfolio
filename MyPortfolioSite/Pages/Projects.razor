@@ -1,5 +1,6 @@
 ﻿@page "/projects"
 @using GameProject.Models
+@using SpeedTracker.Models
 @inject IJSRuntime JS
 
 
@@ -25,6 +26,7 @@
                 <h2 id="game-title">GAME OVER</h2>
                 <p id="score-display">Final Score: @game.Score</p>
                 <p id="score-display">High Score: @game.HighScore</p>
+                <p id="score-display">Words Per Minute: @wpm.AverageWpm</p>
                 <button id="start-button" @onclick="RestartGame">Play Again</button>
             </div>
         }
@@ -36,6 +38,7 @@
                 <p class="description-line">Memorize the sentences displayed on the screen.</p>
                 <p class="description-line">Type the sentences as quickly and</p>
                 <p class="description-line">accurately as you can.</p>
+                <p class="description-line">Work your way through 3 rounds of increasing difficulty</p>
             </div>
             <button id="start-button" @onclick="StartGame">Start Game</button>
         }
@@ -43,6 +46,7 @@
         {
             <div id="game-screen">
                 <h2 id="game-title">Round: @game.CurrentRound</h2>
+                <h2 id="score-display">@game.CurrentSentenceIndex / 5</h2>
                 <p id="score-display">Memorize the placeholder</p>
                 <input id="input-box" class="@(isIncorrect ? "input-incorrect" : "")" type="text"
                        value="@userInput"
@@ -51,6 +55,7 @@
                        placeholder="@game.CurrentSentence" />
                 <p id="score-display">Score: @game.Score</p>
                 <p id="score-display">High Score: @game.HighScore</p>
+                @* <p id="score-display">WordsPerMinute: @wpm.Wpm</p> *@
             </div>
         }
     </div>
@@ -97,6 +102,37 @@
             }
         }
     };
+
+    public SpeedGame wpm = new SpeedGame();
+    public void GetWpm()
+    {
+        // need logic for getting words per minute for each round.
+        // Convert user input to char array
+        string[] userWords = userInput.Split(' ');
+        // get start and end of round time
+        if (game.IsGameStarted)
+        {
+            wpm.RoundStartTime = DateTime.Now;
+        }
+        if (game.IsGameOver)
+        {
+            wpm.RoundEndTime = DateTime.Now;
+        }
+        // subract the two points in time to gain period of time for each round
+        wpm.Elapsed = (wpm.RoundEndTime - wpm.RoundStartTime);
+        // Time elapsed in minutes
+        double minutes = wpm.Elapsed.TotalMinutes;
+        // formula for looping through each word in char array and assigning 1 for each word the user types
+        for (int i = 0; i < userWords.Length - 1; i++)
+        {
+            wpm.RoundWpm++;
+        }
+
+        // Formula for working out words per minute WPM = total words typed / time taken in minutes
+        wpm.Wpm = wpm.RoundWpm / minutes;
+
+        
+    }
     public void StartGame()
     {
         game.IsGameStarted = true;
@@ -126,6 +162,14 @@
         }
     }
 
+    public void GameWpmAverage()
+    {
+        // Add round totals to list to get average for whole game
+        wpm.RoundWpmHistory.Add(wpm.Wpm);
+        // Get average of list with the .Average() function
+        wpm.AverageWpm = wpm.RoundWpmHistory.Average();
+    }
+
     @* Method for pressing enter key on input, activates correct or incorrect animation
     Moves to next sentence regardless *@
     private async Task HandleEnter(KeyboardEventArgs e)
@@ -145,7 +189,7 @@
             StateHasChanged();
             await Task.Delay(400); // Matches animation length
             isIncorrect = false; // resets bool so animations stop and user can try again
-            @* return; // don't advance round *@
+            return; // don't advance round 
         }
 
         game.CurrentSentenceIndex++;
@@ -165,6 +209,9 @@
                 }
                 game.IsGameOver = true;
                 game.IsGameStarted = false;
+
+                // This is where to call the method that works out the wpm average for the whole game
+                GameWpmAverage();
             }
             else{
                 LoadCurrentSentence();
@@ -174,6 +221,8 @@
         {
             LoadCurrentSentence();
         }
+
+        GetWpm();
 
         userInput = string.Empty;
             
