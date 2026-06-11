@@ -81,8 +81,24 @@
 @* Project card for RotaHub *@
 <div class="rotahub-wrapper">
     <h1 class="rotahub-headings">RotaHub</h1><h1>- Automated Scheduling for Small Businesses</h1>
-    <img src="Images/HomePage.png" alt="RotaHub-HomePage" class="rotahub-image" />
-    <video src="Images/NewRotaHubTrailer.mp4" alt="RotaHub-Trailer" class="rotahub-image">Demo</video>
+    <div class="slideshow-container">
+    <img src="@rotaHubImages[currentImageIndex]"
+         alt="RotaHub screenshot @(currentImageIndex + 1)"
+         class="rotahub-image" />
+
+    <button class="slideshow-btn slideshow-prev" @onclick="PrevImage">&#10094;</button>
+    <button class="slideshow-btn slideshow-next" @onclick="NextImage">&#10095;</button>
+
+    <div class="slideshow-dots">
+        @for (int i = 0; i < rotaHubImages.Length; i++)
+        {
+            int dotIndex = i;
+            <span class="slideshow-dot @(i == currentImageIndex ? "active" : "")"
+                  @onclick="() => currentImageIndex = dotIndex"></span>
+        }
+    </div>
+</div>
+
 
 
 </div>
@@ -225,6 +241,29 @@
         }
 
         userInput = string.Empty;
+    }
+
+    /* ROTAHUB PRJECTS CARD LOGIC */
+    /* Methods for screenshot slideshow */
+    //Created a list of strings, set them to the image locations
+    private string[] rotaHubImages = {
+        "Images/RotaHub1.png",
+        "Images/RotaHub2.png",
+        "Images/RotaHub3.png",
+        "Images/RotaHub4.png",
+        "Images/RotaHub5.png",
+        "Images/RotaHub6.png",
+        "Images/RotaHub7.png"
+    };
+    private int currentImageIndex = 0;
+
+    private void NextImage()
+    {
+        currentImageIndex = (currentImageIndex + 1) % rotaHubImages.Length;
+    }
+    private void PrevImage()
+    {
+        currentImageIndex = (currentImageIndex -1 + rotaHubImages.Length) % rotaHubImages.Length;
     }
 }
 

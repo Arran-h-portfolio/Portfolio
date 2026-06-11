@@ -240,3 +240,51 @@
     border-color: #ff0000;
     box-shadow: 0 0 12px rgba(0 255, 65, 0.3), 0 8px 24px rgba(0, 0, 0.4);
 }
+
+/* Slideshow styling */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+}
+
+.slideshow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.55);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 14px;
+    font-size: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s ease;
+}
+
+.slideshow-btn:hover {
+    background: rgba(255, 0, 0, 0.7);
+}
+
+.slideshow-prev { left: 8px; }
+.slideshow-next { right: 8px; }
+
+.slideshow-dots {
+    text-align: center;
+    padding: 10px 0 4px;
+}
+
+.slideshow-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background: #444;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.slideshow-dot.active {
+    background: #ff0000;
+}
